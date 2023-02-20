@@ -17,6 +17,7 @@
 		2FC20DC829A34C9000F0AA58 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DC729A34C9000F0AA58 /* MainListView.swift */; };
 		2FC20DCB29A34F7A00F0AA58 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */; };
 		2FC20DCD29A3513C00F0AA58 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DCC29A3513C00F0AA58 /* ComposeView.swift */; };
+		2FC20DCF29A353B800F0AA58 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DCE29A353B800F0AA58 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		2FC20DC729A34C9000F0AA58 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
 		2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		2FC20DCC29A3513C00F0AA58 /* ComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeView.swift; sourceTree = "<group>"; };
+		2FC20DCE29A353B800F0AA58 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */,
 				2FC20DC729A34C9000F0AA58 /* MainListView.swift */,
 				2FC20DCC29A3513C00F0AA58 /* ComposeView.swift */,
+				2FC20DCE29A353B800F0AA58 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC20DCB29A34F7A00F0AA58 /* MemoCell.swift in Sources */,
+				2FC20DCF29A353B800F0AA58 /* DetailView.swift in Sources */,
 				2FC20DBA29A346EA00F0AA58 /* TellMeWhatToDo.xcdatamodeld in Sources */,
 				2FC20DC829A34C9000F0AA58 /* MainListView.swift in Sources */,
 				2FC20DB729A346EA00F0AA58 /* Persistence.swift in Sources */,
