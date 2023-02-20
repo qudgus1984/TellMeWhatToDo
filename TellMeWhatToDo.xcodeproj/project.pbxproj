@@ -15,6 +15,7 @@
 		2FC20DC429A3477400F0AA58 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DC329A3477400F0AA58 /* Memo.swift */; };
 		2FC20DC629A3477C00F0AA58 /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DC529A3477C00F0AA58 /* MemoStore.swift */; };
 		2FC20DC829A34C9000F0AA58 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DC729A34C9000F0AA58 /* MainListView.swift */; };
+		2FC20DCB29A34F7A00F0AA58 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		2FC20DC329A3477400F0AA58 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		2FC20DC529A3477C00F0AA58 /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 		2FC20DC729A34C9000F0AA58 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
+		2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		2FC20DAC29A346E900F0AA58 /* TellMeWhatToDo */ = {
 			isa = PBXGroup;
 			children = (
+				2FC20DC929A34F6400F0AA58 /* View */,
 				2FC20DC129A3474600F0AA58 /* Memory */,
 				2FC20DC029A3474200F0AA58 /* CoreData */,
 				2FC20DAD29A346E900F0AA58 /* TellMeWhatToDoApp.swift */,
@@ -93,6 +96,14 @@
 				2FC20DC529A3477C00F0AA58 /* MemoStore.swift */,
 			);
 			path = Memory;
+			sourceTree = "<group>";
+		};
+		2FC20DC929A34F6400F0AA58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC20DCB29A34F7A00F0AA58 /* MemoCell.swift in Sources */,
 				2FC20DBA29A346EA00F0AA58 /* TellMeWhatToDo.xcdatamodeld in Sources */,
 				2FC20DC829A34C9000F0AA58 /* MainListView.swift in Sources */,
 				2FC20DB729A346EA00F0AA58 /* Persistence.swift in Sources */,
