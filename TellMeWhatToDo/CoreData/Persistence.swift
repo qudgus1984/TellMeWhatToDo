@@ -13,9 +13,9 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        for item in 0..<10 {
+            let newMemo = MemoList(context: viewContext)
+            newMemo.content = "메모들 보여주기\(item)"
         }
         do {
             try viewContext.save()

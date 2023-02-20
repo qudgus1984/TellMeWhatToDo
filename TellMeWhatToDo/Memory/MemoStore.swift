@@ -40,4 +40,7 @@ class MemoStore: ObservableObject {
             list.remove(at: index)
         }
     }
+    
+    func create(memo: Memo) {        
+    }
 }
