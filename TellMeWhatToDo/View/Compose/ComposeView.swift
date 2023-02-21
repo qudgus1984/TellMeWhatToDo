@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ComposeView: View {
     @EnvironmentObject var store: MemoStore
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var memo: Memo? = nil
     
@@ -57,6 +58,14 @@ struct ComposeView: View {
             
         }
     }
+    
+    func saveContext() {
+      do {
+        try managedObjectContext.save()
+      } catch {
+        print("Error saving managed object context: \(error)")
+      }
+    }
 }
 
 struct ComposeView_Previews: PreviewProvider {
@@ -65,3 +74,4 @@ struct ComposeView_Previews: PreviewProvider {
             .environmentObject(MemoStore())
     }
 }
+

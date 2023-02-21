@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct TellMeWhatToDoApp: App {
     @StateObject var store = MemoStore()
+
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

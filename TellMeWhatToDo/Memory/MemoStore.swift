@@ -11,6 +11,8 @@ import CoreData
 class MemoStore: ObservableObject {
     @Published var list: [Memo]
     
+    @FetchRequest(entity: MemoList.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)])
+    
     init() {
         list = [
             Memo(content: "Hello", insertDate: Date.now),
@@ -41,6 +43,6 @@ class MemoStore: ObservableObject {
         }
     }
     
-    func create(memo: Memo) {        
+    func addMemo(content: String) {
     }
 }

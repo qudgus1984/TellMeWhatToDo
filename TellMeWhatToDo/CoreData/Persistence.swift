@@ -28,6 +28,7 @@ struct PersistenceController {
         return result
     }()
 
+    // MARK: CoreDataStack SetUp
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
@@ -52,5 +53,17 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func saveContext() {
+      let context = container.viewContext
+      if context.hasChanges {
+        do {
+          try context.save()
+        } catch {
+          let nserror = error as NSError
+          fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+      }
     }
 }

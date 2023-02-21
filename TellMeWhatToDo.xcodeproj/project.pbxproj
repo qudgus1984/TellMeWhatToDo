@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F175EC029A48754002FAE74 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F175EBF29A48754002FAE74 /* MainViewModel.swift */; };
 		2FC20DAE29A346E900F0AA58 /* TellMeWhatToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC20DAD29A346E900F0AA58 /* TellMeWhatToDoApp.swift */; };
 		2FC20DB229A346EA00F0AA58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC20DB129A346EA00F0AA58 /* Assets.xcassets */; };
 		2FC20DB529A346EA00F0AA58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC20DB429A346EA00F0AA58 /* Preview Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F175EBF29A48754002FAE74 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2FC20DAA29A346E900F0AA58 /* TellMeWhatToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TellMeWhatToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC20DAD29A346E900F0AA58 /* TellMeWhatToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellMeWhatToDoApp.swift; sourceTree = "<group>"; };
 		2FC20DB129A346EA00F0AA58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +48,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F175EB929A486E6002FAE74 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2F175EBD29A48742002FAE74 /* ViewModel */,
+				2F175EBC29A48733002FAE74 /* View */,
+				2FC20DC729A34C9000F0AA58 /* MainListView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2F175EBA29A486FD002FAE74 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				2FC20DCC29A3513C00F0AA58 /* ComposeView.swift */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		2F175EBB29A48703002FAE74 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2FC20DCE29A353B800F0AA58 /* DetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		2F175EBC29A48733002FAE74 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F175EBD29A48742002FAE74 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F175EBF29A48754002FAE74 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2FC20DA129A346E900F0AA58 = {
 			isa = PBXGroup;
 			children = (
@@ -104,10 +148,9 @@
 		2FC20DC929A34F6400F0AA58 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2FC20DCA29A34F7A00F0AA58 /* MemoCell.swift */,
-				2FC20DC729A34C9000F0AA58 /* MainListView.swift */,
-				2FC20DCC29A3513C00F0AA58 /* ComposeView.swift */,
-				2FC20DCE29A353B800F0AA58 /* DetailView.swift */,
+				2F175EBB29A48703002FAE74 /* Detail */,
+				2F175EBA29A486FD002FAE74 /* Compose */,
+				2F175EB929A486E6002FAE74 /* Main */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +230,7 @@
 				2FC20DBA29A346EA00F0AA58 /* TellMeWhatToDo.xcdatamodeld in Sources */,
 				2FC20DC829A34C9000F0AA58 /* MainListView.swift in Sources */,
 				2FC20DB729A346EA00F0AA58 /* Persistence.swift in Sources */,
+				2F175EC029A48754002FAE74 /* MainViewModel.swift in Sources */,
 				2FC20DAE29A346E900F0AA58 /* TellMeWhatToDoApp.swift in Sources */,
 				2FC20DCD29A3513C00F0AA58 /* ComposeView.swift in Sources */,
 				2FC20DC629A3477C00F0AA58 /* MemoStore.swift in Sources */,
