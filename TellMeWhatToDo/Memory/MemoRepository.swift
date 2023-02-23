@@ -7,16 +7,16 @@
 
 import CoreData
 
-struct MyItemModel {
+struct MemoModel {
     var content: String
-    var id: UUID
-    var date: Date
+    var id: UUID = UUID()
+    var date: Date = Date.now
     
-    init(content: String, date: Date = Date.now) {
-        id = UUID()
-        self.content = content
-        self.date = date
-    }
+//    init(content: String, date: Date = Date.now) {
+//        id = UUID()
+//        self.content = content
+//        self.date = date
+//    }
 }
 
 class MemoRepository {
@@ -26,12 +26,12 @@ class MemoRepository {
     self.coreDataStorage = coreDataStorage
   }
   
-  func add(name: String) {
+  func addMemo(content: String) {
     let context = coreDataStorage.taskContext()
-    if let savedItem = fetch(name, in: context) {
-      savedItem.updatedDate = Date()
+    if let savedItem = fetch(content, in: context) {
+      savedItem.insertDate = Date()
     } else {
-      create(name, in: context)
+      create(content, in: context)
     }
     
     context.performAndWait {
@@ -43,9 +43,9 @@ class MemoRepository {
     }
   }
   
-  private func fetch(_ name: String, in context: NSManagedObjectContext) -> MyItem? {
-    let fetchRequest = MyItem.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "name == %@", argumentArray: [name])
+  private func fetch(_ content: String, in context: NSManagedObjectContext) -> MemoList? {
+    let fetchRequest = MemoList.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "content == %@", argumentArray: [content])
     do {
       return try context.fetch(fetchRequest).first
     } catch {
@@ -54,21 +54,21 @@ class MemoRepository {
     }
   }
   
-  fileprivate func create(_ name: String, in context: NSManagedObjectContext) {
-    let item = MyItem(context: context)
-    item.name = name
-    item.updatedDate = Date()
+  fileprivate func create(_ content: String, in context: NSManagedObjectContext) {
+    let item = MemoList(context: context)
+    item.content = content
+    item.insertDate = Date()
   }
   
-  func getItems() -> [MyItemModel] {
+  func getItems() -> [MemoModel] {
     fetchAll()
-      .compactMap(\.name)
-      .map(MyItemModel.init)
+      .compactMap(\.content)
+      .map(MemoModel.init)
   }
   
-  private func fetchAll() -> [MyItem] {
-    let request = MyItem.fetchRequest()
-    request.sortDescriptors = [NSSortDescriptor(keyPath: \MyItem.updatedDate, ascending: false)]
+  private func fetchAll() -> [MemoList] {
+    let request = MemoList.fetchRequest()
+    request.sortDescriptors = [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)]
     do {
       return try coreDataStorage.viewContext.fetch(request)
     } catch {
