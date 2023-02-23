@@ -11,7 +11,6 @@ import CoreData
 class MemoStore: ObservableObject {
     @Published var list: [Memo]
     
-    @FetchRequest(entity: MemoList.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)])
     
     init() {
         list = [
@@ -29,7 +28,6 @@ class MemoStore: ObservableObject {
         guard let memo = memo else {
             return
         }
-        
         memo.content = content
     }
     
@@ -41,8 +39,5 @@ class MemoStore: ObservableObject {
         for index in set {
             list.remove(at: index)
         }
-    }
-    
-    func addMemo(content: String) {
     }
 }

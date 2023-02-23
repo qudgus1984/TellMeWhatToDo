@@ -1,28 +1,30 @@
 //
-//  MainListView.swift
+//  MainView.swift
 //  TellMeWhatToDo
 //
-//  Created by 이병현 on 2023/02/20.
+//  Created by 이병현 on 2023/02/23.
 //
 
 import SwiftUI
 import CoreData
 
-struct MainListView: View {
+struct MainView: View {
     @EnvironmentObject var store: MemoStore
-    @Environment(\.managedObjectContext) var managedObjectContext
+//    @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showComposer: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
+                  animation: .default) private var memoList: FetchedResults<MemoList>
     var body: some View {
         NavigationView {
             List {
                 ForEach(store.list) { memo in
                     NavigationLink {
-                        DetailView(memo: memo)
+//                        MemoListDetailView(memo: memoList)
                     } label: {
-                        MemoCell(memo: memo)
+//                        MemoListCell(memo: memoList)
                     }
                 }
                 .onDelete(perform: store.delete)
@@ -44,9 +46,9 @@ struct MainListView: View {
     }
 }
 
-struct MainListView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainListView()
+        MainView()
             .environmentObject(MemoStore())
     }
 }

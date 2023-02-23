@@ -1,17 +1,17 @@
 //
-//  ComposeView.swift
+//  MemoListComposeView.swift
 //  TellMeWhatToDo
 //
-//  Created by 이병현 on 2023/02/20.
+//  Created by 이병현 on 2023/02/23.
 //
 
 import SwiftUI
 
-struct ComposeView: View {
+struct MemoListComposeView: View {
     @EnvironmentObject var store: MemoStore
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    var memo: Memo? = nil
+    var memo: MemoList? = nil
     
     @Environment(\.dismiss) var dismiss
     
@@ -24,7 +24,7 @@ struct ComposeView: View {
                     .padding()
                     .onAppear {
                         if let memo {
-                            content = memo.content
+                            content = memo.content ?? ""
                         }
                     }
                 //textField같은 것
@@ -42,9 +42,10 @@ struct ComposeView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         if let memo = memo {
-                            store.update(memo: memo, content: content)
+//                            store.update(memo: memo, content: content)
+//                            store.addMemo(content: content)
                         } else {
-                            store.insert(memo: content)
+//                            store.insert(memo: content)
                         }
                                                 
                         dismiss()
@@ -65,10 +66,9 @@ struct ComposeView: View {
     }
 }
 
-struct ComposeView_Previews: PreviewProvider {
+struct MemoListComposeView_Previews: PreviewProvider {
     static var previews: some View {
-        ComposeView()
+        MemoListComposeView()
             .environmentObject(MemoStore())
     }
 }
-
