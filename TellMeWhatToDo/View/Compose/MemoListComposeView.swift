@@ -10,12 +10,16 @@ import SwiftUI
 struct MemoListComposeView: View {
     @EnvironmentObject var store: MemoStore
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+    @Environment(\.managedObjectContext) private var viewContext
+
     var memo: MemoList? = nil
     
     @Environment(\.dismiss) var dismiss
     
     @State private var content: String = ""
+    @State private var selectedIndex = -1
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
+                  animation: .default) private var memoList: FetchedResults<MemoList>
     
     var body: some View {
         NavigationView {
@@ -44,8 +48,10 @@ struct MemoListComposeView: View {
                         if let memo = memo {
 //                            store.update(memo: memo, content: content)
 //                            store.addMemo(content: content)
+                            addMemoList()
                         } else {
 //                            store.insert(memo: content)
+                            deleteMemo(offsets: IndexSet(integer: selectedIndex))
                         }
                                                 
                         dismiss()
@@ -53,6 +59,33 @@ struct MemoListComposeView: View {
                         Text("저장")
                     }
                 }
+            }
+        }
+    }
+    
+    private func addMemoList() {
+        withAnimation {
+            let newMemo = MemoList(context: viewContext)
+            newMemo.content = ""
+            newMemo.insertDate = Date()
+            newMemo.id = UUID()
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+        
+    private func deleteMemo(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { memoList[$0] }.forEach(viewContext.delete)
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

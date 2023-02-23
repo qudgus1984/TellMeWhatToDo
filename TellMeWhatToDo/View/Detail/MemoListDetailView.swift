@@ -53,6 +53,7 @@ struct MemoListDetailView: View {
                         .foregroundColor(.secondary)
                         .onChange(of: date) { newValue in
                             memo.insertDate = date
+                            try? self.contextView.save()
                         }
                 }
             }
@@ -121,11 +122,11 @@ extension MemoListDetailView {
     }
 }
 
-struct MemoListDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            DetailView(memo: Memo(content: "Hello"))
-                .environmentObject(MemoStore())
-        }
-    }
-}
+//struct MemoListDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            MemoListDetailView(memo: Memo(content: "Hello"))
+//                .environmentObject(MemoStore())
+//        }
+//    }
+//}

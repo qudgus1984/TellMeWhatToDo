@@ -20,7 +20,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(store.list) { memo in
+                ForEach(memoList) { memo in
                     NavigationLink {
 //                        MemoListDetailView(memo: memoList)
                     } label: {
@@ -39,7 +39,7 @@ struct MainView: View {
                 }
             }
             .sheet(isPresented: $showComposer) {
-                ComposeView()
+                MemoListComposeView()
             }
         }
         .navigationViewStyle(.stack)
