@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)])
     private var items: FetchedResults<MemoList>
@@ -24,8 +25,8 @@ struct ContentView: View {
                 .onAppear {
                     print(items.count)
                     // 샘플 데이터 준비
-                    repo.addMemo(content: "hi")
-                    repo.addMemo(content: "everyone")
+//                    repo.addMemo(content: "hi")
+//                    repo.addMemo(content: "everyone")
                 }
             Button("Add 'jake123'") {
                 addItem("jake123")

@@ -48,10 +48,9 @@ struct MemoListComposeView: View {
                         if let memo = memo {
 //                            store.update(memo: memo, content: content)
 //                            store.addMemo(content: content)
-                            addMemoList()
+                            updateMemo(memo: memo, content: content)
                         } else {
-//                            store.insert(memo: content)
-                            deleteMemo(offsets: IndexSet(integer: selectedIndex))
+                            addMemoList(content)
                         }
                                                 
                         dismiss()
@@ -63,10 +62,10 @@ struct MemoListComposeView: View {
         }
     }
     
-    private func addMemoList() {
+    private func addMemoList(_ content: String) {
         withAnimation {
             let newMemo = MemoList(context: viewContext)
-            newMemo.content = ""
+            newMemo.content = content
             newMemo.insertDate = Date()
             newMemo.id = UUID()
             do {
@@ -77,10 +76,13 @@ struct MemoListComposeView: View {
             }
         }
     }
-        
-    private func deleteMemo(offsets: IndexSet) {
+    
+    private func updateMemo(memo: MemoList?, content: String) {
         withAnimation {
-            offsets.map { memoList[$0] }.forEach(viewContext.delete)
+            guard let memo = memo else {
+                return
+            }
+            memo.content = content
             do {
                 try viewContext.save()
             } catch {
