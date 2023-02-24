@@ -7,17 +7,30 @@
 
 import SwiftUI
 
+//@main
+//struct TellMeWhatToDoApp: App {
+//    @StateObject var store = MemoStore()
+//
+//    let persistenceController = PersistenceController.shared
+//
+//    var body: some Scene {
+//        WindowGroup {
+//            MainListView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environmentObject(store)
+//        }
+//    }
+//}
+
+import SwiftUI
+
 @main
-struct TellMeWhatToDoApp: App {
-    @StateObject var store = MemoStore()
-
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
-        WindowGroup {
-            MainListView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(store)
-        }
+struct ExCoredataApp: App {
+  let viewContext = CoreDataStorage.shared.viewContext
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environment(\.managedObjectContext, viewContext)
     }
+  }
 }

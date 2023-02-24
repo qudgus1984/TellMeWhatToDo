@@ -60,20 +60,19 @@ class MemoRepository {
     item.insertDate = Date()
   }
   
-  func getItems() -> [MemoModel] {
-    fetchAll()
-      .compactMap(\.content)
-      .map(MemoModel.init)
-  }
+//  func getItems() -> [MemoModel] {
+//    fetchAll()
+//          .map(MemoModel.init(content: <#T##String#>))
+//  }
   
-  private func fetchAll() -> [MemoList] {
-    let request = MemoList.fetchRequest()
-    request.sortDescriptors = [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)]
-    do {
-      return try coreDataStorage.viewContext.fetch(request)
-    } catch {
-      print("fetch Person error: \(error)")
-      return []
-    }
-  }
+//  private func fetchAll() -> [MemoList] {
+//    let request = MemoList.fetchRequest()
+//    request.sortDescriptors = [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)]
+//    do {
+//      return try coreDataStorage.viewContext.fetch(request)
+//    } catch {
+//      print("fetch Person error: \(error)")
+//      return []
+//    }
+//  }
 }
