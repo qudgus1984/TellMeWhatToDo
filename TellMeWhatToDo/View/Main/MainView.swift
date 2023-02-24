@@ -12,6 +12,8 @@ struct MainView: View {
     @EnvironmentObject var store: MemoStore
 //    @Environment(\.managedObjectContext) var managedObjectContext
     
+    @State private var selectedIndex = -1
+    
     @State private var showComposer: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -23,11 +25,14 @@ struct MainView: View {
                 ForEach(memoList) { memo in
                     NavigationLink {
 //                        MemoListDetailView(memo: memoList)
+                        MemoListDetailView(memo: memo)
                     } label: {
-//                        MemoListCell(memo: memoList)
+                        MemoListCell(memo: memo)
                     }
                 }
-                .onDelete(perform: store.delete)
+                .onDelete(perform: { indexSet in
+                    deleteMemo(offsets: indexSet)
+                })
             }
             .listStyle(.plain)
             .navigationTitle("내 메모")
@@ -43,6 +48,18 @@ struct MainView: View {
             }
         }
         .navigationViewStyle(.stack)
+    }
+    
+    private func deleteMemo(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { memoList[$0] }.forEach(viewContext.delete)
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 
