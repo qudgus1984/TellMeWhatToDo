@@ -29,7 +29,7 @@ class MemoRepository {
   func addMemo(content: String) {
     let context = coreDataStorage.taskContext()
     if let savedItem = fetch(content, in: context) {
-      savedItem.insertDate = Date()
+        savedItem.insertDate = Date()
     } else {
       create(content, in: context)
     }
@@ -45,7 +45,7 @@ class MemoRepository {
   
   private func fetch(_ content: String, in context: NSManagedObjectContext) -> MemoList? {
     let fetchRequest = MemoList.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "content == %@", argumentArray: [content])
+//    fetchRequest.predicate = NSPredicate(format: "content == %@", argumentArray: [content])
     do {
       return try context.fetch(fetchRequest).first
     } catch {

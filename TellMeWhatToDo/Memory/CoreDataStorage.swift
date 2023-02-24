@@ -27,7 +27,7 @@ class CoreDataStorage {
   let storeType: StoreType
   
   lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "ExCoreData")
+    let container = NSPersistentContainer(name: "TellMeWhatToDo")
     
     if self.storeType == .inMemory {
       let description = NSPersistentStoreDescription()

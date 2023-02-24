@@ -22,10 +22,8 @@ import SwiftUI
 //    }
 //}
 
-import SwiftUI
-
 @main
-struct ExCoredataApp: App {
+struct TellMeWhatToDoApp: App {
   let viewContext = CoreDataStorage.shared.viewContext
   var body: some Scene {
     WindowGroup {
