@@ -9,11 +9,7 @@ import SwiftUI
 import CoreData
 
 struct MainView: View {
-    @EnvironmentObject var store: MemoStore
-//    @Environment(\.managedObjectContext) var managedObjectContext
-    
     @State private var selectedIndex = -1
-    
     @State private var showComposer: Bool = false
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -24,7 +20,6 @@ struct MainView: View {
             List {
                 ForEach(memoList) { memo in
                     NavigationLink {
-//                        MemoListDetailView(memo: memoList)
                         MemoListDetailView(memo: memo)
                     } label: {
                         MemoListCell(memo: memo)
@@ -66,6 +61,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(MemoStore())
     }
 }
