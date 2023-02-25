@@ -12,7 +12,7 @@ struct MemoListComposeView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.managedObjectContext) private var viewContext
 
-    var memo: MemoList? = nil
+    @State var memo: MemoList? = nil
     
     @Environment(\.dismiss) var dismiss
     
@@ -46,8 +46,6 @@ struct MemoListComposeView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         if let memo = memo {
-//                            store.update(memo: memo, content: content)
-//                            store.addMemo(content: content)
                             updateMemo(memo: memo, content: content)
                         } else {
                             addMemoList(content)

@@ -10,40 +10,37 @@ import Combine
 
 
 struct MemoListDetailView: View {
-//    @ObservedObject var memo: Memo //Publish로 선언한 변수가 변경될 때마다 자동적으로 업데이트시켜줌
-    
-    @EnvironmentObject var store: MemoStore
-    
-    @State private var selectedIndex = -1
+        
     @State private var showComposer = false
     @State private var showDeleteAlert = false
     @State private var description = ""
+    
     @State private var date = Date()
+    @State var memo: MemoList? = nil
+    @State private var content: String = ""
+    @State private var selectedIndex = -1
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
+                  animation: .default) private var memoList: FetchedResults<MemoList>
+
+
+
     
     @Environment(\.dismiss) var dissmiss
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.managedObjectContext) var contextView
-
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
-                  animation: .default) private var memoList: FetchedResults<MemoList>
-    @ObservedObject var memo: MemoList
-    
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack {
                     HStack {
-                        
-                        Text(description)
+                        Text(content)
                             .padding()
-                            .onChange(of: description) { newValue in
-                                if newValue != "" {
-                                    memo.content = newValue
-                                    try? self.contextView.save()
+                            .onAppear {
+                                if let memo {
+                                    content = memo.content ?? ""
                                 }
                             }
-                        
                         Spacer(minLength: 0)
                     }
                     
@@ -51,9 +48,10 @@ struct MemoListDetailView: View {
                         .padding()
                         .font(.footnote)
                         .foregroundColor(.secondary)
-                        .onChange(of: date) { newValue in
-                            memo.insertDate = date
-                            try? self.contextView.save()
+                        .onAppear {
+                            if let memo {
+                                date = memo.insertDate ?? Date()
+                            }
                         }
                 }
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemoListCell: View {
     @ObservedObject var memo: MemoList
-    @Environment(\.managedObjectContext) var contextView
+    @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {
         VStack(alignment: .leading) {

@@ -20,6 +20,7 @@ struct MainView: View {
             List {
                 ForEach(memoList) { memo in
                     NavigationLink {
+//                        MemoListDetailView(memo: memoList)
                         MemoListDetailView(memo: memo)
                     } label: {
                         MemoListCell(memo: memo)
