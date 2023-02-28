@@ -50,7 +50,6 @@ struct MemoListComposeView: View {
                         } else {
                             addMemoList(content)
                         }
-                                                
                         dismiss()
                     } label: {
                         Text("저장")

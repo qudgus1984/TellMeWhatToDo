@@ -8,28 +8,45 @@
 import SwiftUI
 
 struct MemoListCell: View {
-    @ObservedObject var memo: MemoList
+//    @ObservedObject var memo: MemoList
     @Environment(\.managedObjectContext) var viewContext
+    @State private var content: String = ""
+    @State var memo: MemoList? = nil
+    @State private var date = Date()
+
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
+                  animation: .default) private var memoList: FetchedResults<MemoList>
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(memo.content ?? "")
+            Text(content)
                 .font(.body)
                 .lineLimit(1)
-            Text(memo.insertDate ?? Date(), style: .date)
+                .onAppear {
+                    if let memo {
+                        content = memo.content ?? ""
+                    }
+                }
+            Text(date, style: .date)
                 .font(.caption)
                 .foregroundColor(.secondary)
+                .onAppear {
+                    if let memo {
+                        date = memo.insertDate ?? Date()
+                    }
+                }
         }
     }
 }
 
 
 
-//struct MemoListCell_Previews: PreviewProvider {
-//    @Environment(\.managedObjectContext) var contextView
-//    static var item = MemoList(context: contextView)
-//
-//    static var previews: some View {
-//        MemoListCell(memo: item)
-//    }
-//}
+struct MemoListCell_Previews: PreviewProvider {
+    @Environment(\.managedObjectContext) static var viewContext
+    static let memo = MemoList(context: viewContext)
+    
+    static var previews: some View {
+        MemoListCell(memo: memo)
+            .previewLayout(.fixed(width: 300, height: 70))
+    }
+}

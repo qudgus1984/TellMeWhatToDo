@@ -13,21 +13,17 @@ struct MemoListDetailView: View {
         
     @State private var showComposer = false
     @State private var showDeleteAlert = false
-    @State private var description = ""
     
     @State private var date = Date()
     @State var memo: MemoList? = nil
     @State private var content: String = ""
     @State private var selectedIndex = -1
+    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
                   animation: .default) private var memoList: FetchedResults<MemoList>
 
-
-
-    
     @Environment(\.dismiss) var dissmiss
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.managedObjectContext) var contextView
     
     var body: some View {
         VStack {
@@ -68,7 +64,6 @@ struct MemoListDetailView: View {
                 .foregroundColor(.red)
                 .alert("삭제 확인", isPresented: $showDeleteAlert) {
                     Button(role: .destructive) {
-//                        store.delete(memo: memo)
                         deleteMemo(offsets: IndexSet(integer: selectedIndex))
                         dissmiss()
                     } label: {
