@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Combine
-
+import CoreData
 
 struct MemoListDetailView: View {
-        
+    let coreDataStorage = CoreDataStorage(storeType: .inMemory)
+
     @State private var showComposer = false
     @State private var showDeleteAlert = false
     
@@ -82,6 +83,8 @@ struct MemoListDetailView: View {
         }
         .sheet(isPresented: $showComposer) {
             MemoListComposeView(memo: memo)
+        }.onDisappear {
+            fetchAll()
         }
     }
 }
@@ -113,6 +116,18 @@ extension MemoListDetailView {
             }
         }
     }
+    
+    private func fetchAll() -> [MemoList] {
+        let request = MemoList.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)]
+        do {
+          return try coreDataStorage.viewContext.fetch(request)
+        } catch {
+          print("fetch Person error: \(error)")
+          return []
+        }
+      }
+
 }
 
 //struct MemoListDetailView_Previews: PreviewProvider {

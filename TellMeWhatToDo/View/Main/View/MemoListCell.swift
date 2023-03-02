@@ -10,7 +10,7 @@ import SwiftUI
 struct MemoListCell: View {
 //    @ObservedObject var memo: MemoList
     @Environment(\.managedObjectContext) var viewContext
-    @State private var content: String = ""
+    @State var content: String = ""
     @State var memo: MemoList? = nil
     @State private var date = Date()
 
