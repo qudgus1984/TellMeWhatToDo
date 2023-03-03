@@ -26,14 +26,8 @@ struct MemoListComposeView: View {
             VStack {
                 TextEditor(text: $content)
                     .padding()
-                    .onAppear {
-                        if let memo {
-                            content = memo.content ?? ""
-                        }
-                    }
-                //textField같은 것
             }
-            .navigationTitle(memo != nil ? "메모 편집" : "새 메모")
+            .navigationTitle("새 메모")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -45,11 +39,7 @@ struct MemoListComposeView: View {
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        if let memo = memo {
-                            updateMemo(memo: memo, content: content)
-                        } else {
-                            addMemoList(content)
-                        }
+                        addMemoList(content)
                         dismiss()
                     } label: {
                         Text("저장")
@@ -73,22 +63,7 @@ struct MemoListComposeView: View {
             }
         }
     }
-    
-    private func updateMemo(memo: MemoList?, content: String) {
-        withAnimation {
-            guard let memo = memo else {
-                return
-            }
-            memo.content = content
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
+        
     func saveContext() {
       do {
         try managedObjectContext.save()

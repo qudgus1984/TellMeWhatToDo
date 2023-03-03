@@ -87,7 +87,8 @@ struct MemoListDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    showComposer = true
+                    updateMemo(memo: memo, content: content)
+                    dissmiss()
                 } label: {
                     Text("저장")
                 }
@@ -124,17 +125,20 @@ extension MemoListDetailView {
         }
     }
     
-    private func fetchAll() -> [MemoList] {
-        let request = MemoList.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)]
-        do {
-          return try coreDataStorage.viewContext.fetch(request)
-        } catch {
-          print("fetch Person error: \(error)")
-          return []
+    private func updateMemo(memo: MemoList?, content: String) {
+        withAnimation {
+            guard let memo = memo else {
+                return
+            }
+            memo.content = content
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
-      }
-
+    }
 }
 
 //struct MemoListDetailView_Previews: PreviewProvider {
