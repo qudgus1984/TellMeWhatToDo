@@ -31,7 +31,7 @@ struct MemoListDetailView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text(content)
+                        TextEditor(text: $content)
                             .padding()
                             .onAppear {
                                 if let memo {
@@ -83,8 +83,15 @@ struct MemoListDetailView: View {
         }
         .sheet(isPresented: $showComposer) {
             MemoListComposeView(memo: memo)
-        }.onDisappear {
-            fetchAll()
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    showComposer = true
+                } label: {
+                    Text("저장")
+                }
+            }
         }
     }
 }
