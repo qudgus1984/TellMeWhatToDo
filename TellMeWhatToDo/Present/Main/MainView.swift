@@ -15,7 +15,10 @@ struct MainView: View {
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
                   animation: .default) private var memoList: FetchedResults<MemoList>
+    
+    
     var body: some View {
+        
         NavigationView {
             List {
                 ForEach(memoList) { memo in

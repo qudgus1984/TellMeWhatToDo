@@ -11,18 +11,18 @@ import CoreData
 
 struct MemoListDetailView: View {
     let coreDataStorage = CoreDataStorage(storeType: .inMemory)
-
+    
     @State private var showComposer = false
     @State private var showDeleteAlert = false
     
     @State private var date = Date()
     @State var memo: MemoList? = nil
     @State private var content: String = ""
-    @State private var selectedIndex = -1
+    @State private var selectedIndex = 0
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: true)],
                   animation: .default) private var memoList: FetchedResults<MemoList>
-
+    
     @Environment(\.dismiss) var dissmiss
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -65,7 +65,9 @@ struct MemoListDetailView: View {
                 .foregroundColor(.red)
                 .alert("삭제 확인", isPresented: $showDeleteAlert) {
                     Button(role: .destructive) {
-                        deleteMemo(offsets: IndexSet(integer: selectedIndex))
+                        guard let memo = memo else { return } // 선택한 메모 가져오기
+                        let index = memoList.firstIndex(of: memo)! // 선택한 메모의 인덱스 가져오기
+                        deleteMemo(offsets: IndexSet(integer: index))
                         dissmiss()
                     } label: {
                         Text("삭제")
@@ -112,9 +114,11 @@ extension MemoListDetailView {
             }
         }
     }
-        
+    
     private func deleteMemo(offsets: IndexSet) {
         withAnimation {
+            let index = offsets.first ?? 0
+            selectedIndex = index // update selectedIndex
             offsets.map { memoList[$0] }.forEach(viewContext.delete)
             do {
                 try viewContext.save()
@@ -122,6 +126,7 @@ extension MemoListDetailView {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+            
         }
     }
     
