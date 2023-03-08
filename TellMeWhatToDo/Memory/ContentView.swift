@@ -13,39 +13,28 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)])
     private var items: FetchedResults<MemoList>
+    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+
     let repo = MemoRepository()
     
     var body: some View {
-        VStack {
-            ForEach(items) { item in
-                Text(item.content!)
-            }
-            Text("Hello, world!")
-                .padding()
-                .onAppear {
-                    print(items.count)
-                    // 샘플 데이터 준비
-//                    repo.addMemo(content: "hi")
-//                    repo.addMemo(content: "everyone")
+        MainView()
+            .onAppear {
+                if !isFirstLaunching {
+                    // 이후 실행 시 ContentView(MainView) 띄우기
+                        
                 }
-            Button("Add 'jake123'") {
-                addItem("jake123")
             }
-        }
+            // 앱 최초 구동 시 전체화면으로 OnboardingTabView 띄우기
+            .fullScreenCover(isPresented: $isFirstLaunching) {
+                OnBoardingTabView(isFirstLaunching: $isFirstLaunching)
+                    .onDisappear {
+                        // OnBoardingTabView가 닫힐 때 isFirstLaunching 값을 false로 변경
+                        isFirstLaunching = false
+                    }
+            }
     }
     
-    private func addItem(_ content: String) {
-        withAnimation {
-            let newItem = MemoList(context: viewContext)
-            newItem.insertDate = Date()
-            newItem.content = content
-            do {
-                try viewContext.save()
-            } catch {
-                print(error)
-            }
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {

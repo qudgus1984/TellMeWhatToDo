@@ -22,6 +22,9 @@
 		2FC74B2229A78874003AA10C /* MemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC74B2129A78874003AA10C /* MemoRepository.swift */; };
 		2FC74B2429A78962003AA10C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC74B2329A78962003AA10C /* ContentView.swift */; };
 		2FC74B2629A78EA3003AA10C /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC74B2529A78EA3003AA10C /* CoreDataStorage.swift */; };
+		2FDCF0E629B8699F00B5B8B1 /* OnBoardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCF0E529B8699F00B5B8B1 /* OnBoardingPageView.swift */; };
+		2FDCF0E829B869C300B5B8B1 /* OnBoardingLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCF0E729B869C300B5B8B1 /* OnBoardingLastPageView.swift */; };
+		2FDCF0EA29B869EB00B5B8B1 /* OnBoardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCF0E929B869EB00B5B8B1 /* OnBoardingTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		2FC74B2129A78874003AA10C /* MemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoRepository.swift; sourceTree = "<group>"; };
 		2FC74B2329A78962003AA10C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2FC74B2529A78EA3003AA10C /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		2FDCF0E529B8699F00B5B8B1 /* OnBoardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageView.swift; sourceTree = "<group>"; };
+		2FDCF0E729B869C300B5B8B1 /* OnBoardingLastPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingLastPageView.swift; sourceTree = "<group>"; };
+		2FDCF0E929B869EB00B5B8B1 /* OnBoardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,11 +163,30 @@
 		2FC20DC929A34F6400F0AA58 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				2FDCF0E329B8692800B5B8B1 /* OnBoarding */,
 				2F175EBB29A48703002FAE74 /* Detail */,
 				2F175EBA29A486FD002FAE74 /* Compose */,
 				2F175EB929A486E6002FAE74 /* Main */,
 			);
 			path = Present;
+			sourceTree = "<group>";
+		};
+		2FDCF0E329B8692800B5B8B1 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				2FDCF0E429B8699300B5B8B1 /* View */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		2FDCF0E429B8699300B5B8B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2FDCF0E529B8699F00B5B8B1 /* OnBoardingPageView.swift */,
+				2FDCF0E729B869C300B5B8B1 /* OnBoardingLastPageView.swift */,
+				2FDCF0E929B869EB00B5B8B1 /* OnBoardingTabView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,15 +262,18 @@
 				2FC74B2629A78EA3003AA10C /* CoreDataStorage.swift in Sources */,
 				2FC74B1E29A7805C003AA10C /* MainView.swift in Sources */,
 				2FC74B2429A78962003AA10C /* ContentView.swift in Sources */,
+				2FDCF0E829B869C300B5B8B1 /* OnBoardingLastPageView.swift in Sources */,
 				2FC20DBA29A346EA00F0AA58 /* TellMeWhatToDo.xcdatamodeld in Sources */,
 				2FC74B1C29A77DBA003AA10C /* MemoListComposeView.swift in Sources */,
 				2FC20DB729A346EA00F0AA58 /* Persistence.swift in Sources */,
+				2FDCF0EA29B869EB00B5B8B1 /* OnBoardingTabView.swift in Sources */,
 				2FC74B1A29A777B7003AA10C /* MemoListDetailView.swift in Sources */,
 				2F175EC029A48754002FAE74 /* MainViewModel.swift in Sources */,
 				2FC20DAE29A346E900F0AA58 /* TellMeWhatToDoApp.swift in Sources */,
 				2FC74B2029A7810C003AA10C /* MemoListCell.swift in Sources */,
 				2FC20DC629A3477C00F0AA58 /* MemoStore.swift in Sources */,
 				2FC74B2229A78874003AA10C /* MemoRepository.swift in Sources */,
+				2FDCF0E629B8699F00B5B8B1 /* OnBoardingPageView.swift in Sources */,
 				2FC20DC429A3477400F0AA58 /* Memo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
