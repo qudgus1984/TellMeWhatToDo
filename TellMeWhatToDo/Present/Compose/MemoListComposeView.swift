@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemoListComposeView: View {
-    @EnvironmentObject var store: MemoStore
+//    @EnvironmentObject var store: MemoStore
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -76,6 +76,5 @@ struct MemoListComposeView: View {
 struct MemoListComposeView_Previews: PreviewProvider {
     static var previews: some View {
         MemoListComposeView()
-            .environmentObject(MemoStore())
     }
 }

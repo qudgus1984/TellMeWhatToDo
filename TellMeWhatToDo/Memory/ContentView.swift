@@ -14,8 +14,6 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \MemoList.insertDate, ascending: false)])
     private var items: FetchedResults<MemoList>
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
-
-    let repo = MemoRepository()
     
     var body: some View {
         MainView()

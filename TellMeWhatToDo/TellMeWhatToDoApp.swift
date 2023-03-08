@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct TellMeWhatToDoApp: App {
-    @StateObject var store = MemoStore()
 
     let persistenceController = PersistenceController.shared
 
@@ -17,18 +16,6 @@ struct TellMeWhatToDoApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(store)
         }
     }
 }
-
-//@main
-//struct TellMeWhatToDoApp: App {
-//  let viewContext = CoreDataStorage.shared.viewContext
-//  var body: some Scene {
-//    WindowGroup {
-//      ContentView()
-//        .environment(\.managedObjectContext, viewContext)
-//    }
-//  }
-//}
